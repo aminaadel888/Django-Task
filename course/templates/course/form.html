@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">
+        {% if form.instance.pk %} Update {% else %} Add {% endif %} Course
+    </h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" class="p-4 border rounded shadow bg-light">
+                {% csrf_token %}
+
+                <!-- Name Field -->
+                <div class="mb-3">
+                    <label for="{{ form.name.id_for_label }}" class="form-label">Name</label>
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                        <div class="text-danger">
+                            {{ form.name.errors.0 }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- description Field -->
+                <div class="mb-3">
+                    <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                    {{ form.description }}
+                    {% if form.description.errors %}
+                        <div class="text-danger">
+                            {{ form.description.errors.0 }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- duration Field -->
+                <div class="mb-3">
+                    <label for="{{ form.ageduration.id_for_label }}" class="form-label">Duration</label>
+                    {{ form.duration }}
+                    {% if form.duration.errors %}
+                        <div class="text-danger">
+                            {{ form.duration.errors.0 }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary w-50">
+                        {% if form.instance.pk %} Update {% else %} Add {% endif %}
+                    </button>
+                </div>
+            </form>
+
+            <!-- Back Button -->
+            <div class="text-center mt-3">
+                <a href="{% url 'course_list' %}" class="btn btn-secondary">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
