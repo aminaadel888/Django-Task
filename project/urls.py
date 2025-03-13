@@ -17,14 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.shortcuts import render
+from django.contrib.auth.views import *
+from trainee.views import *
+
+
 
 
 def home(request):
     return render(request,'base.html')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('register/', RegisterView, name='register'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('',home,name='home'),
     path('trainees/', include('trainee.urls')),
     path('courses/',include('course.urls')),
+
 ]
