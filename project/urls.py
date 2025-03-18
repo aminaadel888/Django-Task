@@ -27,9 +27,9 @@ def home(request):
     return render(request,'base.html')
 
 urlpatterns = [
-    path('', LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('', TraineeLoginView.as_view(template_name='registration/login.html'), name='login'),
     path('register/', RegisterView, name='register'),
-    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    path('logout/', TraineeLogoutView.as_view(next_page='login'), name='logout'),
     path('',home,name='home'),
     path('trainees/', include('trainee.urls')),
     path('courses/',include('course.urls')),

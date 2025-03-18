@@ -9,6 +9,10 @@ urlpatterns = [
 
     # Authentication URLs
     path('register/', RegisterView, name='register'),
-    path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('login/', TraineeLoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('logout/', TraineeLogoutView.as_view(), name='logout'),
+
+    path('api/trainees/', TraineeListCreateAPIView.as_view(), name='api-trainee-list-create'),
+    path('api/trainees/<int:pk>/', TraineeUpdateDeleteAPIView.as_view(), name='api-trainee-update-delete'),
+
 ]

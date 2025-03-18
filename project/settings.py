@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # my apps
     'trainee.apps.TraineeConfig',
     'course.apps.CourseConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
